@@ -14,8 +14,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18.x'
-      - run: npm install
-      - run: npm run build
-      - run: npm test
+      - name: Install dependencies
+        run: npm install
+      - name: Build project
+        run: npm run build
+      - name: Run tests
+        run: npm test
       - name: Deploy to Server
         run: echo "Deploy step di sini, sesuaikan dengan kebutuhan (misal: rsync, scp, FTP, atau deploy ke layanan cloud)"
