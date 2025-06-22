@@ -1,29 +1,23 @@
-name: Node.js CI
+name: Deploy brimomod
 
 on:
   push:
-    branches: [ "main", "develop" ]
-  pull_request:
-    branches: [ "main", "develop" ]
+    branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
 
     steps:
     - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '18.x'
     - run: npm install
     - run: npm run build
     - run: npm test
-    - name: Upload build
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-folder
-        path: build/
+
+    # Contoh langkah deploy (sesuaikan dengan kebutuhan Anda)
+    - name: Deploy to Server
+      run: echo "Deploy step di sini, sesuaikan dengan kebutuhan (misal: rsync, scp, FTP, atau deploy ke layanan cloud)"
